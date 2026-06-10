@@ -4,13 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAW", "SAW\SAW.csproj", "{0AA1D0FC-9B11-4F4E-9947-40E45ABE7C0F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62} = {7022C23E-D37E-4986-9EA8-0CCE192EEF62}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Update", "Update\Update.csproj", "{88FCB8BA-7AE9-434C-94FD-89890E213C03}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "WebServer\WebServer.csproj", "{7022C23E-D37E-4986-9EA8-0CCE192EEF62}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{207A1DDD-8A9B-4DD8-8B0B-A4FD8A79EE2C}"
 	ProjectSection(SolutionItems) = preProject
@@ -47,14 +42,6 @@ Global
 		{88FCB8BA-7AE9-434C-94FD-89890E213C03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88FCB8BA-7AE9-434C-94FD-89890E213C03}.Release|x86.ActiveCfg = Release|Any CPU
 		{88FCB8BA-7AE9-434C-94FD-89890E213C03}.Release|x86.Build.0 = Release|Any CPU
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62}.Debug|x86.Build.0 = Debug|Any CPU
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62}.Release|x86.ActiveCfg = Release|Any CPU
-		{7022C23E-D37E-4986-9EA8-0CCE192EEF62}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

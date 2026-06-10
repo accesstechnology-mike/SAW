@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    name: Restore and build SAW on Windows
+    name: Restore and build SAW solution on Windows
     runs-on: windows-latest
 
     steps:
@@ -43,22 +43,22 @@ jobs:
           nuget help | Select-Object -First 20
           msbuild -version
 
-      - name: Restore NuGet packages for main app
+      - name: Restore NuGet packages
         shell: pwsh
         run: |
-          nuget restore SAW/SAW.csproj -PackagesDirectory packages -NonInteractive -Verbosity detailed
+          nuget restore SAW.sln -NonInteractive -Verbosity detailed
 
-      - name: Build main app Debug x86
+      - name: Build solution Debug x86
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force artifacts | Out-Null
-          msbuild SAW/SAW.csproj `
+          msbuild SAW.sln `
             /m `
             /p:Configuration=Debug `
             /p:Platform=x86 `
             /p:RestorePackages=false `
             /v:minimal `
-            /bl:artifacts/saw-main-debug-x86.binlog
+            /bl:artifacts/saw-solution-debug-x86.binlog
 
       - name: Upload build log
         if: always()
