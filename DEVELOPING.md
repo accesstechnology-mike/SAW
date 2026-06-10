@@ -190,7 +190,7 @@ Current CI behaviour:
 - builds `SAW/SAW.csproj` as `Debug|x86`;
 - uploads an MSBuild binary log if present.
 
-This gives the fork a reproducible CI baseline for the main SAW application. Full-solution build remains unresolved because of the missing `WebServer/WebServer.csproj` reference and the `Update` project targeting .NET Framework 4.6.1.
+This gives the fork a reproducible CI baseline for the main SAW application. Full-solution build was then repaired on branch `fix/full-solution-build` by removing the dead `WebServer` project reference from `SAW.sln`, retargeting `Update/Update.csproj` to .NET Framework 4.8, and changing CI to build the solution. Actions run `27287367859` completed successfully for `SAW.sln` as `Debug|x86`.
 
 A full Windows build pass should eventually do the following:
 
