@@ -166,6 +166,23 @@ Microsoft.Common.CurrentVersion.targets(1259,5): error MSB3644: The reference as
 
 The build probe now targets `SAW/SAW.csproj` directly so the main application blockers can be identified before repairing solution-level/update-project issues.
 
+Observed result from the direct main-app build probe, Actions run `27286584674`:
+
+- `SAW/SAW.csproj` package restore succeeded.
+- Main application compilation reached C# compilation.
+- Build failed because Managed DirectX assemblies were not available on the runner.
+
+Relevant errors:
+
+```text
+warning MSB3245: Could not resolve this reference. Could not locate the assembly "Microsoft.DirectX".
+warning MSB3245: Could not resolve this reference. Could not locate the assembly "Microsoft.DirectX.DirectInput".
+SAW\Switches\Switching\JoySwitch.cs(5,17): error CS0234: The type or namespace name 'DirectX' does not exist in the namespace 'Microsoft'
+SAW\Switches\Switching\JoySwitch.cs(90,18): error CS0246: The type or namespace name 'Device' could not be found
+```
+
+This confirms Managed DirectX/DirectInput is the first main-application build blocker.
+
 A full Windows build pass should eventually do the following:
 
 1. Clone the fork.
