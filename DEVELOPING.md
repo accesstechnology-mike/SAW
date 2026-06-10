@@ -147,7 +147,26 @@ Before changing these, determine whether the update/repository features are stil
 
 ## Baseline build procedure to verify on Windows
 
-This has not yet been verified in this fork. The first Windows build pass should do the following:
+The first GitHub Actions probe was run on branch `probe/windows-ci-build`.
+
+Observed result from Actions run `27286484594`:
+
+- NuGet package restore reached NuGet successfully.
+- Building `SAW.sln` failed before reaching main application compile issues.
+- `SAW.sln` references `WebServer/WebServer.csproj`, but that project file was not present in the fork checkout.
+- `Update/Update.csproj` targets .NET Framework 4.6.1, and the GitHub `windows-latest` runner did not have the 4.6.1 reference assemblies installed.
+
+Relevant errors:
+
+```text
+SAW.sln.metaproj : error MSB3202: The project file "...\WebServer\WebServer.csproj" was not found.
+SAW\SAW.csproj.metaproj : error MSB3202: The project file "...\WebServer\WebServer.csproj" was not found.
+Microsoft.Common.CurrentVersion.targets(1259,5): error MSB3644: The reference assemblies for .NETFramework,Version=v4.6.1 were not found. [Update\Update.csproj]
+```
+
+The build probe now targets `SAW/SAW.csproj` directly so the main application blockers can be identified before repairing solution-level/update-project issues.
+
+A full Windows build pass should eventually do the following:
 
 1. Clone the fork.
 2. Open `SAW.sln` in Visual Studio.

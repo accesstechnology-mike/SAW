@@ -32,22 +32,22 @@ jobs:
           nuget help | Select-Object -First 20
           msbuild -version
 
-      - name: Restore NuGet packages
+      - name: Restore NuGet packages for main app
         shell: pwsh
         run: |
-          nuget restore SAW.sln -NonInteractive -Verbosity detailed
+          nuget restore SAW/SAW.csproj -PackagesDirectory packages -NonInteractive -Verbosity detailed
 
-      - name: Build Debug x86
+      - name: Build main app Debug x86
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force artifacts | Out-Null
-          msbuild SAW.sln `
+          msbuild SAW/SAW.csproj `
             /m `
             /p:Configuration=Debug `
             /p:Platform=x86 `
             /p:RestorePackages=false `
             /v:minimal `
-            /bl:artifacts/saw-debug-x86.binlog
+            /bl:artifacts/saw-main-debug-x86.binlog
 
       - name: Upload build log
         if: always()
