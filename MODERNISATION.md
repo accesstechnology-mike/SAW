@@ -57,6 +57,8 @@ Tasks:
 - Replace hardcoded machine-specific references where possible with repository-relative paths or documented installation steps.
 - Confirm a clean clone can restore packages and build on Windows.
 
+Initial dependency and build notes are tracked in [`DEVELOPING.md`](DEVELOPING.md).
+
 Suggested branch:
 
 ```text

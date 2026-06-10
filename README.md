@@ -22,6 +22,7 @@ SAW is assistive-technology software. Switch scanning, dwell selection, joystick
 See:
 
 - [`MODERNISATION.md`](MODERNISATION.md) - roadmap, safety principles and first branches.
+- [`DEVELOPING.md`](DEVELOPING.md) - current build assumptions, dependency inventory and reproducibility blockers.
 
 ## Initial priorities
 
