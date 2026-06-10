@@ -1,0 +1,58 @@
+name: Windows build probe
+
+on:
+  push:
+    branches:
+      - master
+      - probe/windows-ci-build
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Restore and build SAW on Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Show build environment
+        shell: pwsh
+        run: |
+          dotnet --info
+          nuget help | Select-Object -First 20
+          msbuild -version
+
+      - name: Restore NuGet packages
+        shell: pwsh
+        run: |
+          nuget restore SAW.sln -NonInteractive -Verbosity detailed
+
+      - name: Build Debug x86
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force artifacts | Out-Null
+          msbuild SAW.sln `
+            /m `
+            /p:Configuration=Debug `
+            /p:Platform=x86 `
+            /p:RestorePackages=false `
+            /v:minimal `
+            /bl:artifacts/saw-debug-x86.binlog
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: saw-build-binlog
+          path: artifacts/*.binlog
+          if-no-files-found: ignore
