@@ -226,4 +226,4 @@ Not allowed yet:
 
 ## Next action
 
-Run a real Windows build and update this document with observed failures. The likely first failure is missing Managed DirectX assemblies or opaque binary dependency resolution.
+The next low-risk implementation branch is `refactor/joystick-source-abstraction`: isolate `JoySwitch` behind an internal joystick source interface while preserving the current Managed DirectX implementation. See [`docs/directinput-replacement-spike.md`](docs/directinput-replacement-spike.md) for the replacement plan and required hardware/focus checks.

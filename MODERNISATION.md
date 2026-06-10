@@ -124,7 +124,7 @@ Goal: explore modern runtime options without committing the mainline too early.
 Possible tracks:
 
 - .NET 8 WinForms migration spike.
-- Replacement for legacy Managed DirectX/DirectInput assumptions.
+- Replacement for legacy Managed DirectX/DirectInput assumptions. See [`docs/directinput-replacement-spike.md`](docs/directinput-replacement-spike.md).
 - High-DPI improvements.
 - Separation of core scanning/input logic into testable libraries.
 - Longer-term UI replacement only after behavioural compatibility is understood.
