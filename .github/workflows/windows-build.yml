@@ -2,9 +2,6 @@ name: Windows build probe
 
 on:
   push:
-    branches:
-      - master
-      - probe/windows-ci-build
   pull_request:
     branches:
       - master
