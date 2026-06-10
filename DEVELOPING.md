@@ -181,7 +181,16 @@ SAW\Switches\Switching\JoySwitch.cs(5,17): error CS0234: The type or namespace n
 SAW\Switches\Switching\JoySwitch.cs(90,18): error CS0246: The type or namespace name 'Device' could not be found
 ```
 
-This confirms Managed DirectX/DirectInput is the first main-application build blocker.
+A follow-up probe installed the legacy DirectX runtime with Chocolatey before building. Actions run `27286782316` then completed successfully for the direct main application build.
+
+Current CI behaviour:
+
+- installs the legacy DirectX runtime using `choco install directx`;
+- restores packages for `SAW/SAW.csproj`;
+- builds `SAW/SAW.csproj` as `Debug|x86`;
+- uploads an MSBuild binary log if present.
+
+This gives the fork a reproducible CI baseline for the main SAW application. Full-solution build remains unresolved because of the missing `WebServer/WebServer.csproj` reference and the `Update` project targeting .NET Framework 4.6.1.
 
 A full Windows build pass should eventually do the following:
 
