@@ -25,6 +25,17 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
 
+      - name: Install legacy DirectX runtime
+        shell: pwsh
+        run: |
+          choco install directx -y --no-progress
+          $managedDirectXPath = 'C:\Windows\Microsoft.NET\DirectX for Managed Code\1.0.2902.0'
+          if (Test-Path $managedDirectXPath) {
+            Get-ChildItem $managedDirectXPath | Select-Object Name, Length
+          } else {
+            Write-Host "Managed DirectX path not found: $managedDirectXPath"
+          }
+
       - name: Show build environment
         shell: pwsh
         run: |
